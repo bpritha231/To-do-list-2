@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do-list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="text-align: center; padding: 10px; background-image: url(./images/todo-list-seamless-pattern-universal-background-vector-7561340.jpg);">
+    <nav style="border: 60px; padding: 2%; text-shadow: 1px 1px 3px black;">
+        <div class="navbar-box">
+            <h1 style="position: absolute; white-space: nowrap; animation: moveText 20s linear infinite; position: relative; overflow: hidden; height: 50px;">
+                TO-DO-LIST📝
+            </h1>
+        </div>
+    </nav>
+
+    <input id="inputbox" placeholder="Type to-do-items" style="width: 800px; height: 36px; text-align: center;">
+    <button id="btn"
+        style="height: 40px; width: 100px; border-radius: 7px; font-size: large; background-color: green; color: white; border: solid black 2px;">Add</button>
+
+    <ul id="container" style="list-style-type: none; padding: 0; display: flex; flex-direction: column; align-items: center;">
+        <li style="border: 2px solid black; border-radius: 10px; padding: 10px; background-color: #f0f0f0; margin-bottom: 15px; width: 850px; display: flex; justify-content: space-between; align-items: center;">
+            ADD WHAT DO YOU WANT ....
+            <button onclick="deleteitems(event)"
+                style="height: 40px; width: 100px; border-radius: 7px; font-size: large; background-color: red; color: white; border: solid black 2px;">Remove</button>
+        </li>
+    </ul>
+
+    <script>
+        var inputbox = document.getElementById("inputbox");
+        var btn = document.getElementById("btn");
+        var container = document.getElementById("container");
+
+        btn.addEventListener("click", function () {
+            var value = inputbox.value.trim();
+            if (value !== "") {
+                var li = document.createElement("li");
+                li.style.marginBottom = "15px";
+                li.style.border = "2px solid black";
+                li.style.borderRadius = "10px";
+                li.style.padding = "10px";
+                li.style.backgroundColor = "#f0f0f0";
+                li.style.display = "flex";
+                li.style.justifyContent = "space-between";
+                li.style.alignItems = "center";
+                li.style.width = "850px";
+
+                var textNode = document.createTextNode(value);
+
+                var removeBtn = document.createElement("button");
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = deleteitems;
+
+                removeBtn.style.height = "40px";
+                removeBtn.style.width = "100px";
+                removeBtn.style.borderRadius = "7px";
+                removeBtn.style.fontSize = "large";
+                removeBtn.style.backgroundColor = "red";
+                removeBtn.style.color = "white";
+                removeBtn.style.border = "solid black 2px";
+
+                li.appendChild(textNode);
+                li.appendChild(removeBtn);
+                container.appendChild(li);
+                inputbox.value = "";
+            }
+        });
+
+        function deleteitems(event) {
+            event.target.parentElement.remove();
+        }
+    </script>
+</body>
+
+</html>
